@@ -1,0 +1,17 @@
+---
+
+- name: Install chrony
+  yum:
+    name: chrony
+    state: installed
+  notify: 
+    - 'Restart chronyd'
+    - 'Enable ntp sync'
+
+- name: Enable chronyd
+  systemd:
+    name: chronyd
+    enabled: yes
+  notify:
+    - 'Restart chronyd'
+    - 'Enable ntp sync'
